@@ -63,6 +63,7 @@
 		"build": "next build",
 		"dev": "next dev",
 		"lint": "eslint",
+		"postinstall": "prisma generate",
 		"push": "prisma db push",
 		"reset": "prisma db push --force-reset",
 		"seed": "prisma db seed",
