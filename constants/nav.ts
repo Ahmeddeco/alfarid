@@ -1,4 +1,3 @@
-import { Facebook, Instagram } from "lucide-react"
 import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6"
 
 export const frontNavLinks = [
