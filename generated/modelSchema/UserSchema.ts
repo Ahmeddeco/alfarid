@@ -1,10 +1,12 @@
 import { z } from 'zod';
+import { RoleSchema } from '../inputTypeSchemas/RoleSchema'
 
 /////////////////////////////////////////
 // USER SCHEMA
 /////////////////////////////////////////
 
 export const UserSchema = z.object({
+  role: RoleSchema,
   id: z.string(),
   name: z.string().nullish(),
   email: z.string().nullish(),
@@ -16,6 +18,7 @@ export const UserSchema = z.object({
   city: z.string().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  clientId: z.string(),
 })
 
 export type User = z.infer<typeof UserSchema>

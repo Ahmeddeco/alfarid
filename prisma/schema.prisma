@@ -31,12 +31,16 @@ generator zod {
 
 generator client {
   provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
 }
+
+/**
+ * ----------------------------- Authentication -----------------------------
+ */
 
 model Account {
   userId            String
@@ -58,7 +62,7 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           String   @id @default(uuid())
   sessionToken String   @unique // <--- THIS IS THE CRITICAL LINE
   userId       String
   expires      DateTime
@@ -91,7 +95,7 @@ model Authenticator {
 }
 
 model User {
-  id            String          @id @default(cuid())
+  id            String          @id @default(uuid())
   name          String?
   email         String?         @unique
   emailVerified DateTime?
@@ -100,9 +104,196 @@ model User {
   country       String?
   state         String?
   city          String?
+  role          Role            @default(client)
   accounts      Account[]
   sessions      Session[]
   Authenticator Authenticator[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
+  client        Client          @relation(fields: [clientId], references: [id])
+  tasks         Task[]
+  clientId      String          @unique
+  comments      Comment[]
+  timeEntries   TimeEntry[]
+}
+
+/**
+ * ------------------------------ CRM & CLIENTS -----------------------------
+ */
+
+model Client {
+  id             String       @id @default(uuid())
+  name           String
+  companyName    String?
+  website        String?
+  industry       String?
+  email          String       @unique
+  phone          String       @unique
+  country        String?
+  state          String?
+  city           String?
+  status         ClientStatus @default(active)
+  accountManager User?
+  project        Project[]
+  invoices       Invoice[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/**
+ * --------------------------- PROJECT MANAGEMENT ---------------------------
+ */
+
+model Project {
+  id          String        @id @default(uuid())
+  name        String
+  description String?       @db.Text
+  status      ProjectStatus @default(planning)
+  startDate   DateTime?
+  endDate     DateTime?
+  budget      Decimal?      @db.Decimal(10, 2)
+  tasks       Task[]
+  timeEntries TimeEntry[]
+
+  client   Client? @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Task {
+  id          String     @id @default(uuid())
+  title       String
+  description String?    @db.Text
+  status      TaskStatus @default(todo)
+  priority    Priority   @default(medium)
+  dueDate     DateTime?
+
+  project     Project?    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   String?
+  assignee    User?       @relation(fields: [userId], references: [id])
+  userId      String?
+  comments    Comment[]
+  timeEntries TimeEntry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comment {
+  id      String @id @default(uuid())
+  content String
+  author  User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  task      Task?    @relation(fields: [taskId], references: [id])
+  taskId    String?
+  userId    String
+}
+
+/**
+ * ------------------------------ TIME TRACKING -----------------------------
+ */
+
+model TimeEntry {
+  id          String    @id @default(uuid())
+  description String?
+  startDate   DateTime
+  endDate     DateTime?
+  duration    Int?
+  isBillable  Boolean   @default(true)
+  user        User      @relation(fields: [userId], references: [id])
+  project     Project?  @relation(fields: [projectId], references: [id])
+  task        Task?     @relation(fields: [taskId], references: [id])
+
+  projectId String?
+  taskId    String?
+  userId    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/**
+ * --------------------------- FINANCE & INVOICING --------------------------
+ */
+
+model Invoice {
+  id           String        @id @default(uuid())
+  invoceNumber String        @unique
+  status       InvoiceStatus @default(draft)
+  issueDate    DateTime      @default(now())
+  dueDate      DateTime
+  subTotal     Decimal       @db.Decimal(10, 2)
+  tax          Decimal       @db.Decimal(10, 2)
+  total        Decimal       @db.Decimal(10, 2)
+  items        InvoceItem[]
+  clientId     String?
+  client       Client?       @relation(fields: [clientId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model InvoceItem {
+  id          String   @id @default(uuid())
+  description String
+  quantity    Int      @default(1)
+  unitPrice   Decimal  @db.Decimal(10, 2)
+  total       Decimal  @db.Decimal(10, 2)
+  invoice     Invoice? @relation(fields: [invoiceId], references: [id])
+  invoiceId   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/**
+ * ---------------------------------- ENUMS ---------------------------------
+ */
+
+enum Role {
+  admin
+  manager
+  staff
+  client
+}
+
+enum ClientStatus {
+  active
+  inactive
+  lead
+}
+
+enum ProjectStatus {
+  planning
+  active
+  on_hold
+  completed
+  canceled
+}
+
+enum TaskStatus {
+  todo
+  in_progress
+  review
+  done
+}
+
+enum Priority {
+  low
+  medium
+  hogh
+  urgent
+}
+
+enum InvoiceStatus {
+  draft
+  sent
+  paid
+  overdue
+  void
 }
