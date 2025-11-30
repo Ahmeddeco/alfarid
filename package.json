@@ -61,7 +61,7 @@
 	},
 	"private": true,
 	"scripts": {
-		"build": "npx prisma generate && next build",
+		"build": "npm prisma generate && next build",
 		"dev": "next dev",
 		"lint": "eslint",
 		"postinstall": "prisma generate",
