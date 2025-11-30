@@ -454,9 +454,9 @@ export type ClientUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type ClientScalarRelationFilter = {
-  is?: Prisma.ClientWhereInput
-  isNot?: Prisma.ClientWhereInput
+export type ClientNullableScalarRelationFilter = {
+  is?: Prisma.ClientWhereInput | null
+  isNot?: Prisma.ClientWhereInput | null
 }
 
 export type ClientCountOrderByAggregateInput = {
@@ -507,21 +507,18 @@ export type ClientMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type ClientNullableScalarRelationFilter = {
-  is?: Prisma.ClientWhereInput | null
-  isNot?: Prisma.ClientWhereInput | null
-}
-
 export type ClientCreateNestedOneWithoutAccountManagerInput = {
   create?: Prisma.XOR<Prisma.ClientCreateWithoutAccountManagerInput, Prisma.ClientUncheckedCreateWithoutAccountManagerInput>
   connectOrCreate?: Prisma.ClientCreateOrConnectWithoutAccountManagerInput
   connect?: Prisma.ClientWhereUniqueInput
 }
 
-export type ClientUpdateOneRequiredWithoutAccountManagerNestedInput = {
+export type ClientUpdateOneWithoutAccountManagerNestedInput = {
   create?: Prisma.XOR<Prisma.ClientCreateWithoutAccountManagerInput, Prisma.ClientUncheckedCreateWithoutAccountManagerInput>
   connectOrCreate?: Prisma.ClientCreateOrConnectWithoutAccountManagerInput
   upsert?: Prisma.ClientUpsertWithoutAccountManagerInput
+  disconnect?: Prisma.ClientWhereInput | boolean
+  delete?: Prisma.ClientWhereInput | boolean
   connect?: Prisma.ClientWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutAccountManagerInput, Prisma.ClientUpdateWithoutAccountManagerInput>, Prisma.ClientUncheckedUpdateWithoutAccountManagerInput>
 }

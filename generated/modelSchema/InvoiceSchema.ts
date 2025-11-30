@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { Decimal as PrismaDecimal } from '@prisma/client/runtime/library';
 import { InvoiceStatusSchema } from '../inputTypeSchemas/InvoiceStatusSchema'
 
 /////////////////////////////////////////
@@ -12,9 +11,9 @@ export const InvoiceSchema = z.object({
   invoceNumber: z.string(),
   issueDate: z.date(),
   dueDate: z.date(),
-  subTotal: z.instanceof(PrismaDecimal, { message: "Field 'subTotal' must be a Decimal. Location: ['Models', 'Invoice']"}),
-  tax: z.instanceof(PrismaDecimal, { message: "Field 'tax' must be a Decimal. Location: ['Models', 'Invoice']"}),
-  total: z.instanceof(PrismaDecimal, { message: "Field 'total' must be a Decimal. Location: ['Models', 'Invoice']"}),
+  subTotal: z.number(),
+  tax: z.number(),
+  total: z.number(),
   clientId: z.string().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),

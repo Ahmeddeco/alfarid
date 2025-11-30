@@ -18,7 +18,7 @@ export const UserSchema = z.object({
   city: z.string().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),
-  clientId: z.string(),
+  clientId: z.string().nullish(),
 })
 
 export type User = z.infer<typeof UserSchema>
