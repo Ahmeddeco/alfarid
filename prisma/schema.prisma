@@ -152,7 +152,7 @@ model Project {
   status      ProjectStatus @default(planning)
   startDate   DateTime?
   endDate     DateTime?
-  budget      Decimal?      @db.Decimal(10, 2)
+  budget      Float?
   tasks       Task[]
   timeEntries TimeEntry[]
 
@@ -227,9 +227,9 @@ model Invoice {
   status       InvoiceStatus @default(draft)
   issueDate    DateTime      @default(now())
   dueDate      DateTime
-  subTotal     Decimal       @db.Decimal(10, 2)
-  tax          Decimal       @db.Decimal(10, 2)
-  total        Decimal       @db.Decimal(10, 2)
+  subTotal     Float
+  tax          Float
+  total        Float
   items        InvoceItem[]
   clientId     String?
   client       Client?       @relation(fields: [clientId], references: [id])
@@ -242,8 +242,8 @@ model InvoceItem {
   id          String   @id @default(uuid())
   description String
   quantity    Int      @default(1)
-  unitPrice   Decimal  @db.Decimal(10, 2)
-  total       Decimal  @db.Decimal(10, 2)
+  unitPrice   Float
+  total       Float
   invoice     Invoice? @relation(fields: [invoiceId], references: [id])
   invoiceId   String?
 
