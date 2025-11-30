@@ -10,8 +10,8 @@ import { Menu } from "lucide-react"
 import Logo from "./Logo"
 import FrontNavigation from "./FrontNavigation"
 import { ThemeButton } from "../theme/ThemeButton"
-import Search from "./Search"
 import UserButton from "@/components/auth/UserButton"
+import CallUs from "./CallUs"
 
 export default function MobileMenu() {
 	return (
@@ -31,7 +31,7 @@ export default function MobileMenu() {
 					</nav>
 					<SheetFooter className="flex-row items-center justify-between border-t shadow-md">
 						<UserButton />
-						<Search />
+						<CallUs />
 						<ThemeButton />
 					</SheetFooter>
 				</SheetContent>

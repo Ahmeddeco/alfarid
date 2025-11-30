@@ -27,7 +27,7 @@ export default function RootLayout({
 			<body className={`${cairo.className} antialiased`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<Header />
-					<main className="pt-14 min-h-dvh h-auto">{children}</main>
+					<main className="pt-24 container mx-auto px-6 min-h-dvh h-auto">{children}</main>
 					<Footer />
 					<Toaster
 						theme="system"
