@@ -1,3 +1,11 @@
+import Hero from "@/components/pages/home/Hero"
+import OurServices from "@/components/pages/home/OurServices"
+
 export default function HomePage() {
-	return <h1>Welcome to Homepage!</h1>
+	return (
+		<>
+			<Hero />
+			<OurServices />
+		</>
+	)
 }

@@ -7,8 +7,8 @@ import { CircleAlert, CircleCheckBig, CircleX } from "lucide-react"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 
-const cairo = localFont({
-	src: "../public/Cairo.ttf",
+const playPen = localFont({
+	src: "../public/PlaypenSansArabic.ttf",
 })
 
 export const metadata: Metadata = {
@@ -24,11 +24,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${cairo.className} antialiased`}>
+			<body className={`${playPen.className} antialiased`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<Header />
 					<main className="pt-24 container mx-auto px-6 min-h-dvh h-auto">{children}</main>
-					<Footer />
 					<Toaster
 						theme="system"
 						richColors
@@ -39,6 +38,7 @@ export default function RootLayout({
 							error: <CircleX />,
 						}}
 					/>
+					<Footer />
 				</ThemeProvider>
 			</body>
 		</html>
