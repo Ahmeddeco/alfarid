@@ -24,8 +24,8 @@ export default function OurServices() {
 				))}
 
 				{/* ------------------------------ next step ----------------------------- */}
-				<Card className="lg:col-span-2 bg-primary relative">
-					<CardContent className="flex flex-col gap-4 h-full items-center justify-center text-neutral-50">
+				<Card className="lg:col-span-2 gradient text-neutral-100 relative">
+					<CardContent className="flex flex-col gap-4 h-full items-center justify-center ">
 						<h2>take the next step toward success</h2>
 						<h6 className="text-center ">
 							don&apos;t let opportunities pass you by. the digital world is full of potential, and with <br />

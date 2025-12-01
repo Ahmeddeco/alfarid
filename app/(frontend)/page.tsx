@@ -1,6 +1,6 @@
-import ContactUs from "@/components/pages/home/ContactUs"
 import Hero from "@/components/pages/home/Hero"
 import OurServices from "@/components/pages/home/OurServices"
+import SayAboutUs from "@/components/pages/home/SayAboutUs"
 import WhyUs from "@/components/pages/home/WhyUs"
 
 export default function HomePage() {
@@ -9,7 +9,7 @@ export default function HomePage() {
 			<Hero />
 			<OurServices />
 			<WhyUs />
-			<ContactUs />
+			<SayAboutUs />
 		</>
 	)
 }

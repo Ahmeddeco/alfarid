@@ -85,7 +85,8 @@
 	--accent: oklch(0.9619 0.058 95.6174);
 	--accent-foreground: oklch(0.3958 0.1331 25.723);
 	--destructive: oklch(0.4437 0.1613 26.8994);
-	--border: oklch(0.9355 0.0324 80.9937);
+	--border: oklch(0.3741 0.0087 67.5582);
+
 	--input: oklch(0.9355 0.0324 80.9937);
 	--ring: oklch(0.465 0.147 24.9381);
 	--chart-1: oklch(0.5054 0.1905 27.5181);
@@ -137,10 +138,10 @@
 	--secondary-foreground: oklch(0.9619 0.058 95.6174);
 	--muted: oklch(0.2291 0.006 56.0708);
 	--muted-foreground: oklch(0.8687 0.0043 56.366);
+	--border: oklch(0.9355 0.0324 80.9937);
 	--accent: oklch(0.5553 0.1455 48.9975);
 	--accent-foreground: oklch(0.9619 0.058 95.6174);
 	--destructive: oklch(0.6368 0.2078 25.3313);
-	--border: oklch(0.3741 0.0087 67.5582);
 	--input: oklch(0.3741 0.0087 67.5582);
 	--ring: oklch(0.5054 0.1905 27.5181);
 	--chart-1: oklch(0.7106 0.1661 22.2162);
@@ -213,5 +214,8 @@
 	}
 	.section {
 		@apply py-8 lg:py-24 text-center lg:text-start min-h-[80vh] h-auto;
+	}
+	.gradient {
+		@apply bg-linear-90 from-primary to-primary/90 ;
 	}
 }

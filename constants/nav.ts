@@ -3,40 +3,18 @@ import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6"
 export const frontNavLinks = [
   {
     title: "home",
-    href: "#Hero"
+    href: "/"
   },
   {
-    title: "services",
-    href: "#OurServices"
-  },
-  {
-    title: "Why Us",
-    href: "#WhyUs"
+    title: "our services",
+    href: "/services"
   },
   {
     title: "contact us",
-    href: "#ContactUs",
+    href: "/contact"
   },
-]
 
-// export const quickLinks = [
-//   {
-//     title: "about us",
-//     href: "#aboutUs",
-//   },
-//   {
-//     title: "our-services",
-//     href: "#our-services",
-//   },
-//   {
-//     title: "our-clients",
-//     href: "#our-clients",
-//   },
-//   {
-//     title: "contact-us",
-//     href: "#contact-us",
-//   },
-// ]
+]
 
 export const socials = [
   {
