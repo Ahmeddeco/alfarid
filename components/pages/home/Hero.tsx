@@ -8,7 +8,7 @@ import client4 from "@/public/client4.webp"
 
 export default function Hero() {
 	return (
-		<section className="flex flex-col gap-16 lg:h-[80vh] h-auto pt-4  ">
+		<section className=" section flex flex-col gap-16 lg:h-[80vh] h-auto pt-24 " id="Hero">
 			<div className="flex flex-col items-center text-center gap-4">
 				<h4>your digital success, guaranteed.</h4>
 				<h1>boost sales, build brand, drive results.</h1>
@@ -21,7 +21,7 @@ export default function Hero() {
 				{/* ---------------------------- paragraph --------------------------- */}
 				<div className="lg:w-1/2 w-full  h-auto flex flex-col gap-16 ">
 					{/* ------------------------------ title ----------------------------- */}
-					<div className="flex flex-col items-center lg:items-start gap-2">
+					<div className="flex flex-col items-center lg:items-start gap-4">
 						<h4>at alfarid</h4>
 						<h6 className="lg:w-xl w-full text-center text-balance lg:text-start">
 							We don&apos;t just offer services, we create solutions that drive growth, increase sales, and transform
@@ -31,7 +31,7 @@ export default function Hero() {
 							We&apos;re passionate about turning your vision into reality and ensuting your success in the digital
 							landscape.
 						</h6>
-						<div className="flex gap-8">
+						<div className="flex lg:flex-row flex-col gap-4 ">
 							<Button>contact us now</Button>
 							<Button variant={"outline"}>view services</Button>
 						</div>
@@ -44,10 +44,26 @@ export default function Hero() {
 						</div>
 						{/* ----------------------- customers logos ---------------------- */}
 						<div className="grid lg:grid-cols-4 gap-4 grid-cols-2">
-							<Image src={client1} alt={"client"} className="object-contain dark:bg-transparent bg-foreground rounded-lg " />
-							<Image src={client2} alt={"client"} className="object-contain dark:bg-transparent bg-foreground rounded-lg " />
-							<Image src={client3} alt={"client"} className="object-contain dark:bg-transparent bg-foreground rounded-lg " />
-							<Image src={client4} alt={"client"} className="object-contain dark:bg-transparent bg-foreground rounded-lg " />
+							<Image
+								src={client1}
+								alt={"client"}
+								className="object-contain dark:bg-transparent bg-foreground rounded-lg "
+							/>
+							<Image
+								src={client2}
+								alt={"client"}
+								className="object-contain dark:bg-transparent bg-foreground rounded-lg "
+							/>
+							<Image
+								src={client3}
+								alt={"client"}
+								className="object-contain dark:bg-transparent bg-foreground rounded-lg "
+							/>
+							<Image
+								src={client4}
+								alt={"client"}
+								className="object-contain dark:bg-transparent bg-foreground rounded-lg "
+							/>
 						</div>
 					</div>
 				</div>

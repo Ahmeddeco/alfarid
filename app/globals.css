@@ -180,6 +180,9 @@
 }
 
 @layer base {
+	html {
+		scroll-behavior: smooth;
+	}
 	* {
 		@apply border-border outline-ring/50;
 	}
@@ -208,7 +211,7 @@
 	p {
 		@apply text-xs lg:text-sm font-extralight text-muted-foreground;
 	}
-	section {
-		@apply py-8 lg:py-24 text-center lg:text-start;
+	.section {
+		@apply py-8 lg:py-24 text-center lg:text-start min-h-[80vh] h-auto;
 	}
 }

@@ -1,5 +1,5 @@
 import Logo from "./Logo"
-import { quickLinks, socials } from "@/constants/nav"
+import { frontNavLinks, socials } from "@/constants/nav"
 import Link from "next/link"
 import React from "react"
 
@@ -20,7 +20,7 @@ export default function Footer() {
 				<div className="w-xs flex flex-col gap-4">
 					<h4>quick links</h4>
 					<div className="w-xs flex flex-col gap-2">
-						{quickLinks.map(({ href, title }) => (
+						{frontNavLinks.map(({ href, title }) => (
 							<Link
 								href={href}
 								key={href}

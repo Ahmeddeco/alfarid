@@ -4,8 +4,6 @@ import { ThemeProvider } from "@/components/theme/theme-provider"
 import localFont from "next/font/local"
 import { Toaster } from "@/components/ui/sonner"
 import { CircleAlert, CircleCheckBig, CircleX } from "lucide-react"
-import Header from "@/components/layout/Header"
-import Footer from "@/components/layout/Footer"
 
 const playPen = localFont({
 	src: "../public/PlaypenSansArabic.ttf",
@@ -26,8 +24,7 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${playPen.className} antialiased`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-					<Header />
-					<main className="pt-24 container mx-auto px-6 min-h-dvh h-auto">{children}</main>
+						{children}
 					<Toaster
 						theme="system"
 						richColors
@@ -37,8 +34,7 @@ export default function RootLayout({
 							warning: <CircleAlert />,
 							error: <CircleX />,
 						}}
-					/>
-					<Footer />
+						/>
 				</ThemeProvider>
 			</body>
 		</html>

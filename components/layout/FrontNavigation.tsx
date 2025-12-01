@@ -11,18 +11,11 @@ export default function FrontNavigation() {
 	return (
 		<>
 			{frontNavLinks.map((link) => (
-				<Button
-					asChild
-					key={link.title}
-					variant={"ghost"}
-					className="w-full lg:w-fit"
-				>
+				<Button asChild key={link.title} variant={"ghost"} className="w-full lg:w-fit">
 					<Link
 						href={link.href}
 						className={`${
-							pathName === link.href
-								? "underline-offset-8 underline font-extrabold"
-								: "font-medium"
+							pathName === link.href ? "underline-offset-8 underline font-extrabold" : "font-medium"
 						}  capitalize`}
 					>
 						{link.title}
