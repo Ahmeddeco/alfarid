@@ -1,7 +1,7 @@
 import { services } from "@/constants/homePage"
 import ServiceCard from "./ServiceCard"
 import { Card, CardContent } from "@/components/ui/card"
-import { Cloud } from "lucide-react"
+import { Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -31,8 +31,9 @@ export default function OurServices() {
 							don&apos;t let opportunities pass you by. the digital world is full of potential, and with <br />
 							alfarid by your side, you can seize it.
 						</h6>
-						<Button variant={"black"} size={"wide"}>
+						<Button variant={"black"} size={"wide"} asChild>
 							<Link href={"https://wa.me/+201152640142"} target="_blank">
+								<Phone />
 								contact us now!
 							</Link>
 						</Button>

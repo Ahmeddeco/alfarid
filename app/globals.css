@@ -207,7 +207,7 @@
 		@apply text-base lg:text-lg font-normal capitalize;
 	}
 	h6 {
-		@apply text-sm lg:text-base font-light capitalize;
+		@apply text-sm lg:text-base font-light ;
 	}
 	p {
 		@apply text-xs lg:text-sm font-extralight text-muted-foreground;

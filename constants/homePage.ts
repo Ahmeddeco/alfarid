@@ -12,7 +12,7 @@ export const services = [
   {
     title: "digital marketing",
     subTitle: "the growth engine",
-    description: "The best way for your company to go all over the world",
+    description: "The best way for your company to go all over the world, and increase your sales.",
   },
   {
     title: "performance marketing",
@@ -66,25 +66,25 @@ export const services = [
 export const sayAboutUs = [
   {
     name: "David Chen",
-    image: "/man1.webp",
+    image: "/home/man1.webp",
     job: "E-Commerce Director at SwiftStyle Apparel",
     whatSay: "The shift in ad strategy immediately boosted our monthly ROI by 40% and significantly lowered our customer acquisition cost. The paid media team is exceptional."
   },
   {
     name: "Sam Lee",
-    image: "/man2.webp",
+    image: "/home/man2.webp",
     job: "Marketing Manager at Innovatech Software",
     whatSay: "Their continuous SEO work got us ranking for three critical long-tail keywords, leading to a 60% jump in qualified B2B leads from organic search."
   },
   {
     name: "Mark O'Connell",
-    image: "/man3.webp",
+    image: "/home/man3.webp",
     job: "Owner of O'Connell's Bakery",
     whatSay: "We went from barely a presence to being fully booked every weekend thanks to the new social media management and local search optimization campaign."
   },
   {
     name: "Dr. Edward Stone",
-    image: "/man4.webp",
+    image: "/home/man4.webp",
     job: "Chief Executive Officer of BioFuture Labs",
     whatSay: "They successfully aligned our digital presence with our corporate goals, creating a unified brand voice that resonates across all major platforms."
   }

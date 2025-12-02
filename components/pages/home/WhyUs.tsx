@@ -8,7 +8,7 @@ export default function WhyUs() {
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full ">
 				{/* ------------------------------ top image ------------------------------ */}
 				<div className="row-span-2 h-full relative aspect-square lg:aspect-auto ">
-					<Image src={"/WhyUsTop.webp"} alt={"Why Us"} fill className="object-fill rounded-2xl border" />
+					<Image src={"/home/WhyUsTop.webp"} alt={"Why Us"} fill className="object-fill rounded-2xl border" />
 				</div>
 				<WhyUsCard
 					title={"we deliver results that matter"}
@@ -41,7 +41,7 @@ export default function WhyUs() {
 					}
 				/>
 				<div className=" h-full relative aspect-video lg:aspect-auto ">
-					<Image src={"/WhyUsBottom.webp"} alt={"Why Us"} fill className=" object-fill  rounded-2xl border" />
+					<Image src={"/home/WhyUsBottom.webp"} alt={"Why Us"} fill className=" object-fill  rounded-2xl border" />
 				</div>
 			</div>
 		</section>

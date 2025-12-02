@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
-import client1 from "@/public/client1.webp"
-import client2 from "@/public/client2.webp"
-import client3 from "@/public/client3.webp"
-import client4 from "@/public/client4.webp"
+import client1 from "@/public/home/client1.webp"
+import client2 from "@/public/home/client2.webp"
+import client3 from "@/public/home/client3.webp"
+import client4 from "@/public/home/client4.webp"
 
 export default function Hero() {
 	return (
-		<section className=" section flex flex-col gap-16 lg:h-[80vh] h-auto pt-24 " id="Hero">
+		<section className=" section flex flex-col gap-16 lg:h-[80vh] h-auto pt-32 " id="Hero">
 			<div className="flex flex-col items-center text-center gap-4">
 				<h4>your digital success, guaranteed.</h4>
 				<h1>boost sales, build brand, drive results.</h1>
@@ -16,7 +16,7 @@ export default function Hero() {
 			<div className="flex lg:flex-row items-center flex-col lg:gap-24 gap-4 h-full">
 				{/* ------------------------------ image ----------------------------- */}
 				<div className="lg:w-1/2 w-full  h-full aspect-square  relative">
-					<Image src={"/hero.webp"} alt={"hero"} fill className="object-contain" />
+					<Image src={"/home/hero.webp"} alt={"hero"} fill className="object-contain" />
 				</div>
 				{/* ---------------------------- paragraph --------------------------- */}
 				<div className="lg:w-1/2 w-full  h-auto flex flex-col gap-16 ">
