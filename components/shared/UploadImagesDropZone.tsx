@@ -86,7 +86,7 @@ export function UploadManyImagesDropZone({ dbImages, label = "images", imagesNam
 	)
 }
 
-/* ------------------------- UploadOneImagesDropZone ------------------------ */
+/* ------------------------- UploadOneImageDropZone ------------------------ */
 export function UploadOneImageDropZone({ dbImage, label = "image", imageName = "image", imageKey, errors }: Props) {
 	const [image, setImage] = useState<string>(dbImage || "")
 	const handleDeleteOneImages = () => {

@@ -10,14 +10,18 @@ import Logo from "./Logo"
 import { ThemeButton } from "../theme/ThemeButton"
 import UserButton from "../auth/UserButton"
 import ServerNavigation from "./ServerNavigation"
+import { Separator } from "../ui/separator"
+import { Button } from "../ui/button"
 
 export function ServerSidebar() {
 	return (
-		<Sidebar>
+		<Sidebar className="py-2">
 			<SidebarContent>
-				<SidebarGroup>
+				<SidebarGroup className="space-y-6">
 					<SidebarGroupLabel>
-						<Logo />
+						<Button variant={"ghost"}>
+							<Logo />
+						</Button>
 					</SidebarGroupLabel>
 					<SidebarGroupContent>
 						<ServerNavigation />

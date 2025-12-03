@@ -1,10 +1,11 @@
 "use client"
 
 import { serverNav } from "@/constants/serverNav"
-import { SidebarMenu, SidebarMenuButton } from "../ui/sidebar"
+import { SidebarMenu } from "../ui/sidebar"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import React from "react"
+import { Button } from "../ui/button"
 
 export default function ServerNavigation() {
 	const pathName = usePathname()
@@ -13,17 +14,12 @@ export default function ServerNavigation() {
 		<SidebarMenu>
 			{serverNav.map(({ href, icon, title }) => (
 				<SidebarMenu key={href}>
-					<SidebarMenuButton
-						asChild
-						className={`${
-							pathName === href ? "underline-offset-8 underline  font-extrabold " : "font-medium"
-						}  capitalize`}
-					>
+					<Button asChild variant={pathName === href ? "default" : "ghost"}>
 						<Link href={href}>
 							{React.createElement(icon)}
 							{title}
 						</Link>
-					</SidebarMenuButton>
+					</Button>
 				</SidebarMenu>
 			))}
 		</SidebarMenu>
