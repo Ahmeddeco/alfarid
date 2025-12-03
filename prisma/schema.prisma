@@ -88,8 +88,7 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
 }
@@ -100,21 +99,15 @@ model User {
   email         String?         @unique
   emailVerified DateTime?
   image         String?
-  mobile        String?
-  country       String?
-  state         String?
-  city          String?
-  role          Role            @default(client)
   accounts      Account[]
   sessions      Session[]
   Authenticator Authenticator[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  client        Client?         @relation(fields: [clientId], references: [id])
-  tasks         Task[]
   clientId      String?         @unique
-  comments      Comment[]
-  timeEntries   TimeEntry[]
+  client        Client?         @relation(fields: [clientId], references: [id])
+  employee      Employee?       @relation(fields: [employeeId], references: [id])
+  employeeId    String?
 }
 
 /**
@@ -122,23 +115,40 @@ model User {
  */
 
 model Client {
-  id             String       @id @default(uuid())
-  name           String
-  companyName    String?
-  website        String?
-  industry       String?
-  email          String       @unique
-  phone          String       @unique
-  country        String?
-  state          String?
-  city           String?
-  status         ClientStatus @default(active)
-  accountManager User?
-  project        Project[]
-  invoices       Invoice[]
+  id          String       @id @default(uuid())
+  fullName    String
+  email       String       @unique
+  companyName String?
+  companyLogo String?
+  website     String?
+  industry    String?
+  phone       String       @unique
+  country     String?
+  state       String?
+  city        String?
+  status      ClientStatus @default(active)
+  project     Project[]
+  invoices    Invoice[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  users       User[]
+}
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Employee {
+  id        String       @id @default(uuid())
+  fullName  String
+  email     String       @unique
+  role      EmployeeRole @default(staff)
+  phone     String       @unique
+  country   String?
+  state     String?
+  city      String?
+  project   Project[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  task      Task[]
+  invoices  Invoice[]
+  users     User[]
 }
 
 /**
@@ -152,15 +162,14 @@ model Project {
   status      ProjectStatus @default(planning)
   startDate   DateTime?
   endDate     DateTime?
-  budget      Float?
+  budget      Int?
   tasks       Task[]
-  timeEntries TimeEntry[]
-
-  client   Client? @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  clientId String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  client      Client?       @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  clientId    String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  employee    Employee?     @relation(fields: [employeeId], references: [id])
+  employeeId  String?
 }
 
 model Task {
@@ -170,51 +179,12 @@ model Task {
   status      TaskStatus @default(todo)
   priority    Priority   @default(medium)
   dueDate     DateTime?
-
-  project     Project?    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  project     Project?   @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId   String?
-  assignee    User?       @relation(fields: [userId], references: [id])
+  employees   Employee[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   userId      String?
-  comments    Comment[]
-  timeEntries TimeEntry[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Comment {
-  id      String @id @default(uuid())
-  content String
-  author  User   @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  task      Task?    @relation(fields: [taskId], references: [id])
-  taskId    String?
-  userId    String
-}
-
-/**
- * ------------------------------ TIME TRACKING -----------------------------
- */
-
-model TimeEntry {
-  id          String    @id @default(uuid())
-  description String?
-  startDate   DateTime
-  endDate     DateTime?
-  duration    Int?
-  isBillable  Boolean   @default(true)
-  user        User      @relation(fields: [userId], references: [id])
-  project     Project?  @relation(fields: [projectId], references: [id])
-  task        Task?     @relation(fields: [taskId], references: [id])
-
-  projectId String?
-  taskId    String?
-  userId    String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 /**
@@ -228,14 +198,15 @@ model Invoice {
   issueDate    DateTime      @default(now())
   dueDate      DateTime
   subTotal     Float
-  tax          Float
+  taxRate      Float
   total        Float
   items        InvoceItem[]
   clientId     String?
   client       Client?       @relation(fields: [clientId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  employee     Employee      @relation(fields: [employeeId], references: [id])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  employeeId   String
 }
 
 model InvoceItem {
@@ -246,20 +217,18 @@ model InvoceItem {
   total       Float
   invoice     Invoice? @relation(fields: [invoiceId], references: [id])
   invoiceId   String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 /**
  * ---------------------------------- ENUMS ---------------------------------
  */
 
-enum Role {
+enum EmployeeRole {
   admin
   manager
   staff
-  client
 }
 
 enum ClientStatus {
@@ -279,7 +248,7 @@ enum ProjectStatus {
 enum TaskStatus {
   todo
   in_progress
-  review
+  in_review
   done
 }
 

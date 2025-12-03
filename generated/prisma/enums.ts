@@ -9,14 +9,13 @@
 * 🟢 You can import this file directly.
 */
 
-export const Role = {
+export const EmployeeRole = {
   admin: 'admin',
   manager: 'manager',
-  staff: 'staff',
-  client: 'client'
+  staff: 'staff'
 } as const
 
-export type Role = (typeof Role)[keyof typeof Role]
+export type EmployeeRole = (typeof EmployeeRole)[keyof typeof EmployeeRole]
 
 
 export const ClientStatus = {
@@ -42,7 +41,7 @@ export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
 export const TaskStatus = {
   todo: 'todo',
   in_progress: 'in_progress',
-  review: 'review',
+  in_review: 'in_review',
   done: 'done'
 } as const
 

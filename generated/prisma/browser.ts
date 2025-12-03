@@ -48,6 +48,11 @@ export type User = Prisma.UserModel
  */
 export type Client = Prisma.ClientModel
 /**
+ * Model Employee
+ * 
+ */
+export type Employee = Prisma.EmployeeModel
+/**
  * Model Project
  * 
  */
@@ -57,16 +62,6 @@ export type Project = Prisma.ProjectModel
  * 
  */
 export type Task = Prisma.TaskModel
-/**
- * Model Comment
- * 
- */
-export type Comment = Prisma.CommentModel
-/**
- * Model TimeEntry
- * 
- */
-export type TimeEntry = Prisma.TimeEntryModel
 /**
  * Model Invoice
  * 

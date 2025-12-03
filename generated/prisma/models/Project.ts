@@ -45,6 +45,7 @@ export type ProjectMinAggregateOutputType = {
   clientId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  employeeId: string | null
 }
 
 export type ProjectMaxAggregateOutputType = {
@@ -58,6 +59,7 @@ export type ProjectMaxAggregateOutputType = {
   clientId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  employeeId: string | null
 }
 
 export type ProjectCountAggregateOutputType = {
@@ -71,6 +73,7 @@ export type ProjectCountAggregateOutputType = {
   clientId: number
   createdAt: number
   updatedAt: number
+  employeeId: number
   _all: number
 }
 
@@ -94,6 +97,7 @@ export type ProjectMinAggregateInputType = {
   clientId?: true
   createdAt?: true
   updatedAt?: true
+  employeeId?: true
 }
 
 export type ProjectMaxAggregateInputType = {
@@ -107,6 +111,7 @@ export type ProjectMaxAggregateInputType = {
   clientId?: true
   createdAt?: true
   updatedAt?: true
+  employeeId?: true
 }
 
 export type ProjectCountAggregateInputType = {
@@ -120,6 +125,7 @@ export type ProjectCountAggregateInputType = {
   clientId?: true
   createdAt?: true
   updatedAt?: true
+  employeeId?: true
   _all?: true
 }
 
@@ -220,6 +226,7 @@ export type ProjectGroupByOutputType = {
   clientId: string | null
   createdAt: Date
   updatedAt: Date
+  employeeId: string | null
   _count: ProjectCountAggregateOutputType | null
   _avg: ProjectAvgAggregateOutputType | null
   _sum: ProjectSumAggregateOutputType | null
@@ -252,13 +259,14 @@ export type ProjectWhereInput = {
   status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
-  budget?: Prisma.FloatNullableFilter<"Project"> | number | null
+  budget?: Prisma.IntNullableFilter<"Project"> | number | null
   clientId?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  employeeId?: Prisma.StringNullableFilter<"Project"> | string | null
   tasks?: Prisma.TaskListRelationFilter
-  timeEntries?: Prisma.TimeEntryListRelationFilter
   client?: Prisma.XOR<Prisma.ClientNullableScalarRelationFilter, Prisma.ClientWhereInput> | null
+  employee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -272,9 +280,10 @@ export type ProjectOrderByWithRelationInput = {
   clientId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   tasks?: Prisma.TaskOrderByRelationAggregateInput
-  timeEntries?: Prisma.TimeEntryOrderByRelationAggregateInput
   client?: Prisma.ClientOrderByWithRelationInput
+  employee?: Prisma.EmployeeOrderByWithRelationInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -287,13 +296,14 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
-  budget?: Prisma.FloatNullableFilter<"Project"> | number | null
+  budget?: Prisma.IntNullableFilter<"Project"> | number | null
   clientId?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  employeeId?: Prisma.StringNullableFilter<"Project"> | string | null
   tasks?: Prisma.TaskListRelationFilter
-  timeEntries?: Prisma.TimeEntryListRelationFilter
   client?: Prisma.XOR<Prisma.ClientNullableScalarRelationFilter, Prisma.ClientWhereInput> | null
+  employee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
 }, "id">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -307,6 +317,7 @@ export type ProjectOrderByWithAggregationInput = {
   clientId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
   _avg?: Prisma.ProjectAvgOrderByAggregateInput
   _max?: Prisma.ProjectMaxOrderByAggregateInput
@@ -324,10 +335,11 @@ export type ProjectScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumProjectStatusWithAggregatesFilter<"Project"> | $Enums.ProjectStatus
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
-  budget?: Prisma.FloatNullableWithAggregatesFilter<"Project"> | number | null
+  budget?: Prisma.IntNullableWithAggregatesFilter<"Project"> | number | null
   clientId?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
+  employeeId?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
 }
 
 export type ProjectCreateInput = {
@@ -341,8 +353,8 @@ export type ProjectCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutProjectInput
-  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutProjectInput
   client?: Prisma.ClientCreateNestedOneWithoutProjectInput
+  employee?: Prisma.EmployeeCreateNestedOneWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -356,8 +368,8 @@ export type ProjectUncheckedCreateInput = {
   clientId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  employeeId?: string | null
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutProjectInput
-  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -367,12 +379,12 @@ export type ProjectUpdateInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutProjectNestedInput
-  timeEntries?: Prisma.TimeEntryUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneWithoutProjectNestedInput
+  employee?: Prisma.EmployeeUpdateOneWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -382,12 +394,12 @@ export type ProjectUncheckedUpdateInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutProjectNestedInput
-  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -401,6 +413,7 @@ export type ProjectCreateManyInput = {
   clientId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  employeeId?: string | null
 }
 
 export type ProjectUpdateManyMutationInput = {
@@ -410,7 +423,7 @@ export type ProjectUpdateManyMutationInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -422,10 +435,11 @@ export type ProjectUncheckedUpdateManyInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProjectListRelationFilter = {
@@ -449,6 +463,7 @@ export type ProjectCountOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
 }
 
 export type ProjectAvgOrderByAggregateInput = {
@@ -466,6 +481,7 @@ export type ProjectMaxOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
 }
 
 export type ProjectMinOrderByAggregateInput = {
@@ -479,6 +495,7 @@ export type ProjectMinOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
 }
 
 export type ProjectSumOrderByAggregateInput = {
@@ -532,16 +549,50 @@ export type ProjectUncheckedUpdateManyWithoutClientNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
-export type EnumProjectStatusFieldUpdateOperationsInput = {
-  set?: $Enums.ProjectStatus
+export type ProjectCreateNestedManyWithoutEmployeeInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEmployeeInput, Prisma.ProjectUncheckedCreateWithoutEmployeeInput> | Prisma.ProjectCreateWithoutEmployeeInput[] | Prisma.ProjectUncheckedCreateWithoutEmployeeInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEmployeeInput | Prisma.ProjectCreateOrConnectWithoutEmployeeInput[]
+  createMany?: Prisma.ProjectCreateManyEmployeeInputEnvelope
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
 }
 
-export type NullableFloatFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type ProjectUncheckedCreateNestedManyWithoutEmployeeInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEmployeeInput, Prisma.ProjectUncheckedCreateWithoutEmployeeInput> | Prisma.ProjectCreateWithoutEmployeeInput[] | Prisma.ProjectUncheckedCreateWithoutEmployeeInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEmployeeInput | Prisma.ProjectCreateOrConnectWithoutEmployeeInput[]
+  createMany?: Prisma.ProjectCreateManyEmployeeInputEnvelope
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+}
+
+export type ProjectUpdateManyWithoutEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEmployeeInput, Prisma.ProjectUncheckedCreateWithoutEmployeeInput> | Prisma.ProjectCreateWithoutEmployeeInput[] | Prisma.ProjectUncheckedCreateWithoutEmployeeInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEmployeeInput | Prisma.ProjectCreateOrConnectWithoutEmployeeInput[]
+  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutEmployeeInput | Prisma.ProjectUpsertWithWhereUniqueWithoutEmployeeInput[]
+  createMany?: Prisma.ProjectCreateManyEmployeeInputEnvelope
+  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.ProjectUpdateWithWhereUniqueWithoutEmployeeInput[]
+  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutEmployeeInput | Prisma.ProjectUpdateManyWithWhereWithoutEmployeeInput[]
+  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+}
+
+export type ProjectUncheckedUpdateManyWithoutEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEmployeeInput, Prisma.ProjectUncheckedCreateWithoutEmployeeInput> | Prisma.ProjectCreateWithoutEmployeeInput[] | Prisma.ProjectUncheckedCreateWithoutEmployeeInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEmployeeInput | Prisma.ProjectCreateOrConnectWithoutEmployeeInput[]
+  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutEmployeeInput | Prisma.ProjectUpsertWithWhereUniqueWithoutEmployeeInput[]
+  createMany?: Prisma.ProjectCreateManyEmployeeInputEnvelope
+  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.ProjectUpdateWithWhereUniqueWithoutEmployeeInput[]
+  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutEmployeeInput | Prisma.ProjectUpdateManyWithWhereWithoutEmployeeInput[]
+  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+}
+
+export type EnumProjectStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ProjectStatus
 }
 
 export type ProjectCreateNestedOneWithoutTasksInput = {
@@ -560,22 +611,6 @@ export type ProjectUpdateOneWithoutTasksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutTasksInput, Prisma.ProjectUpdateWithoutTasksInput>, Prisma.ProjectUncheckedUpdateWithoutTasksInput>
 }
 
-export type ProjectCreateNestedOneWithoutTimeEntriesInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutTimeEntriesInput, Prisma.ProjectUncheckedCreateWithoutTimeEntriesInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutTimeEntriesInput
-  connect?: Prisma.ProjectWhereUniqueInput
-}
-
-export type ProjectUpdateOneWithoutTimeEntriesNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutTimeEntriesInput, Prisma.ProjectUncheckedCreateWithoutTimeEntriesInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutTimeEntriesInput
-  upsert?: Prisma.ProjectUpsertWithoutTimeEntriesInput
-  disconnect?: Prisma.ProjectWhereInput | boolean
-  delete?: Prisma.ProjectWhereInput | boolean
-  connect?: Prisma.ProjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutTimeEntriesInput, Prisma.ProjectUpdateWithoutTimeEntriesInput>, Prisma.ProjectUncheckedUpdateWithoutTimeEntriesInput>
-}
-
 export type ProjectCreateWithoutClientInput = {
   id?: string
   name: string
@@ -587,7 +622,7 @@ export type ProjectCreateWithoutClientInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutProjectInput
-  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutProjectInput
+  employee?: Prisma.EmployeeCreateNestedOneWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutClientInput = {
@@ -600,8 +635,8 @@ export type ProjectUncheckedCreateWithoutClientInput = {
   budget?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  employeeId?: string | null
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutProjectInput
-  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutClientInput = {
@@ -640,10 +675,65 @@ export type ProjectScalarWhereInput = {
   status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
-  budget?: Prisma.FloatNullableFilter<"Project"> | number | null
+  budget?: Prisma.IntNullableFilter<"Project"> | number | null
   clientId?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  employeeId?: Prisma.StringNullableFilter<"Project"> | string | null
+}
+
+export type ProjectCreateWithoutEmployeeInput = {
+  id?: string
+  name: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  budget?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tasks?: Prisma.TaskCreateNestedManyWithoutProjectInput
+  client?: Prisma.ClientCreateNestedOneWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutEmployeeInput = {
+  id?: string
+  name: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  budget?: number | null
+  clientId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutEmployeeInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutEmployeeInput, Prisma.ProjectUncheckedCreateWithoutEmployeeInput>
+}
+
+export type ProjectCreateManyEmployeeInputEnvelope = {
+  data: Prisma.ProjectCreateManyEmployeeInput | Prisma.ProjectCreateManyEmployeeInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProjectUpsertWithWhereUniqueWithoutEmployeeInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutEmployeeInput, Prisma.ProjectUncheckedUpdateWithoutEmployeeInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutEmployeeInput, Prisma.ProjectUncheckedCreateWithoutEmployeeInput>
+}
+
+export type ProjectUpdateWithWhereUniqueWithoutEmployeeInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutEmployeeInput, Prisma.ProjectUncheckedUpdateWithoutEmployeeInput>
+}
+
+export type ProjectUpdateManyWithWhereWithoutEmployeeInput = {
+  where: Prisma.ProjectScalarWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutEmployeeInput>
 }
 
 export type ProjectCreateWithoutTasksInput = {
@@ -656,8 +746,8 @@ export type ProjectCreateWithoutTasksInput = {
   budget?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutProjectInput
   client?: Prisma.ClientCreateNestedOneWithoutProjectInput
+  employee?: Prisma.EmployeeCreateNestedOneWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutTasksInput = {
@@ -671,7 +761,7 @@ export type ProjectUncheckedCreateWithoutTasksInput = {
   clientId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutProjectInput
+  employeeId?: string | null
 }
 
 export type ProjectCreateOrConnectWithoutTasksInput = {
@@ -697,11 +787,11 @@ export type ProjectUpdateWithoutTasksInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  timeEntries?: Prisma.TimeEntryUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneWithoutProjectNestedInput
+  employee?: Prisma.EmployeeUpdateOneWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutTasksInput = {
@@ -711,83 +801,11 @@ export type ProjectUncheckedUpdateWithoutTasksInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutProjectNestedInput
-}
-
-export type ProjectCreateWithoutTimeEntriesInput = {
-  id?: string
-  name: string
-  description?: string | null
-  status?: $Enums.ProjectStatus
-  startDate?: Date | string | null
-  endDate?: Date | string | null
-  budget?: number | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  tasks?: Prisma.TaskCreateNestedManyWithoutProjectInput
-  client?: Prisma.ClientCreateNestedOneWithoutProjectInput
-}
-
-export type ProjectUncheckedCreateWithoutTimeEntriesInput = {
-  id?: string
-  name: string
-  description?: string | null
-  status?: $Enums.ProjectStatus
-  startDate?: Date | string | null
-  endDate?: Date | string | null
-  budget?: number | null
-  clientId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutProjectInput
-}
-
-export type ProjectCreateOrConnectWithoutTimeEntriesInput = {
-  where: Prisma.ProjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutTimeEntriesInput, Prisma.ProjectUncheckedCreateWithoutTimeEntriesInput>
-}
-
-export type ProjectUpsertWithoutTimeEntriesInput = {
-  update: Prisma.XOR<Prisma.ProjectUpdateWithoutTimeEntriesInput, Prisma.ProjectUncheckedUpdateWithoutTimeEntriesInput>
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutTimeEntriesInput, Prisma.ProjectUncheckedCreateWithoutTimeEntriesInput>
-  where?: Prisma.ProjectWhereInput
-}
-
-export type ProjectUpdateToOneWithWhereWithoutTimeEntriesInput = {
-  where?: Prisma.ProjectWhereInput
-  data: Prisma.XOR<Prisma.ProjectUpdateWithoutTimeEntriesInput, Prisma.ProjectUncheckedUpdateWithoutTimeEntriesInput>
-}
-
-export type ProjectUpdateWithoutTimeEntriesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
-  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tasks?: Prisma.TaskUpdateManyWithoutProjectNestedInput
-  client?: Prisma.ClientUpdateOneWithoutProjectNestedInput
-}
-
-export type ProjectUncheckedUpdateWithoutTimeEntriesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
-  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutProjectNestedInput
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProjectCreateManyClientInput = {
@@ -800,6 +818,7 @@ export type ProjectCreateManyClientInput = {
   budget?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  employeeId?: string | null
 }
 
 export type ProjectUpdateWithoutClientInput = {
@@ -809,11 +828,11 @@ export type ProjectUpdateWithoutClientInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutProjectNestedInput
-  timeEntries?: Prisma.TimeEntryUpdateManyWithoutProjectNestedInput
+  employee?: Prisma.EmployeeUpdateOneWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutClientInput = {
@@ -823,11 +842,11 @@ export type ProjectUncheckedUpdateWithoutClientInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutProjectNestedInput
-  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutClientInput = {
@@ -837,7 +856,62 @@ export type ProjectUncheckedUpdateManyWithoutClientInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  budget?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type ProjectCreateManyEmployeeInput = {
+  id?: string
+  name: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  budget?: number | null
+  clientId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProjectUpdateWithoutEmployeeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutEmployeeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateManyWithoutEmployeeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  budget?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -849,12 +923,10 @@ export type ProjectUncheckedUpdateManyWithoutClientInput = {
 
 export type ProjectCountOutputType = {
   tasks: number
-  timeEntries: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tasks?: boolean | ProjectCountOutputTypeCountTasksArgs
-  timeEntries?: boolean | ProjectCountOutputTypeCountTimeEntriesArgs
 }
 
 /**
@@ -874,13 +946,6 @@ export type ProjectCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.TaskWhereInput
 }
 
-/**
- * ProjectCountOutputType without action
- */
-export type ProjectCountOutputTypeCountTimeEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TimeEntryWhereInput
-}
-
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -893,9 +958,10 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   clientId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  employeeId?: boolean
   tasks?: boolean | Prisma.Project$tasksArgs<ExtArgs>
-  timeEntries?: boolean | Prisma.Project$timeEntriesArgs<ExtArgs>
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
+  employee?: boolean | Prisma.Project$employeeArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -910,7 +976,9 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   clientId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  employeeId?: boolean
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
+  employee?: boolean | Prisma.Project$employeeArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -924,7 +992,9 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   clientId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  employeeId?: boolean
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
+  employee?: boolean | Prisma.Project$employeeArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectScalar = {
@@ -938,28 +1008,31 @@ export type ProjectSelectScalar = {
   clientId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  employeeId?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "status" | "startDate" | "endDate" | "budget" | "clientId" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "status" | "startDate" | "endDate" | "budget" | "clientId" | "createdAt" | "updatedAt" | "employeeId", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tasks?: boolean | Prisma.Project$tasksArgs<ExtArgs>
-  timeEntries?: boolean | Prisma.Project$timeEntriesArgs<ExtArgs>
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
+  employee?: boolean | Prisma.Project$employeeArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
+  employee?: boolean | Prisma.Project$employeeArgs<ExtArgs>
 }
 export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
+  employee?: boolean | Prisma.Project$employeeArgs<ExtArgs>
 }
 
 export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Project"
   objects: {
     tasks: Prisma.$TaskPayload<ExtArgs>[]
-    timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
     client: Prisma.$ClientPayload<ExtArgs> | null
+    employee: Prisma.$EmployeePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -972,6 +1045,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     clientId: string | null
     createdAt: Date
     updatedAt: Date
+    employeeId: string | null
   }, ExtArgs["result"]["project"]>
   composites: {}
 }
@@ -1367,8 +1441,8 @@ readonly fields: ProjectFieldRefs;
 export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tasks<T extends Prisma.Project$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  timeEntries<T extends Prisma.Project$timeEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   client<T extends Prisma.Project$clientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$clientArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  employee<T extends Prisma.Project$employeeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$employeeArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1404,10 +1478,11 @@ export interface ProjectFieldRefs {
   readonly status: Prisma.FieldRef<"Project", 'ProjectStatus'>
   readonly startDate: Prisma.FieldRef<"Project", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Project", 'DateTime'>
-  readonly budget: Prisma.FieldRef<"Project", 'Float'>
+  readonly budget: Prisma.FieldRef<"Project", 'Int'>
   readonly clientId: Prisma.FieldRef<"Project", 'String'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Project", 'DateTime'>
+  readonly employeeId: Prisma.FieldRef<"Project", 'String'>
 }
     
 
@@ -1828,30 +1903,6 @@ export type Project$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Project.timeEntries
- */
-export type Project$timeEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the TimeEntry
-   */
-  select?: Prisma.TimeEntrySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the TimeEntry
-   */
-  omit?: Prisma.TimeEntryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TimeEntryInclude<ExtArgs> | null
-  where?: Prisma.TimeEntryWhereInput
-  orderBy?: Prisma.TimeEntryOrderByWithRelationInput | Prisma.TimeEntryOrderByWithRelationInput[]
-  cursor?: Prisma.TimeEntryWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.TimeEntryScalarFieldEnum | Prisma.TimeEntryScalarFieldEnum[]
-}
-
-/**
  * Project.client
  */
 export type Project$clientArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1868,6 +1919,25 @@ export type Project$clientArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.ClientInclude<ExtArgs> | null
   where?: Prisma.ClientWhereInput
+}
+
+/**
+ * Project.employee
+ */
+export type Project$employeeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
 }
 
 /**

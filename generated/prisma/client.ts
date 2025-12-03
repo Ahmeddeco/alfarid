@@ -33,7 +33,7 @@ export * from "./enums"
  * const accounts = await prisma.account.findMany()
  * ```
  * 
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
@@ -70,6 +70,11 @@ export type User = Prisma.UserModel
  */
 export type Client = Prisma.ClientModel
 /**
+ * Model Employee
+ * 
+ */
+export type Employee = Prisma.EmployeeModel
+/**
  * Model Project
  * 
  */
@@ -79,16 +84,6 @@ export type Project = Prisma.ProjectModel
  * 
  */
 export type Task = Prisma.TaskModel
-/**
- * Model Comment
- * 
- */
-export type Comment = Prisma.CommentModel
-/**
- * Model TimeEntry
- * 
- */
-export type TimeEntry = Prisma.TimeEntryModel
 /**
  * Model Invoice
  * 

@@ -1,3 +1,3 @@
-export default function ServerPage() {
-  return <h1>Welcome to Serverpage!</h1>;
+export default function DashboardPage() {
+	return <h1>Welcome to Dashboard page!</h1>
 }

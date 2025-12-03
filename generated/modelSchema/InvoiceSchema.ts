@@ -12,11 +12,12 @@ export const InvoiceSchema = z.object({
   issueDate: z.date(),
   dueDate: z.date(),
   subTotal: z.number(),
-  tax: z.number(),
+  taxRate: z.number(),
   total: z.number(),
   clientId: z.string().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  employeeId: z.string(),
 })
 
 export type Invoice = z.infer<typeof InvoiceSchema>

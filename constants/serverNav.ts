@@ -1,49 +1,29 @@
-import { Armchair, ChartColumnIncreasing, ClipboardList, Eye, Factory, Palette, PcCase, SwatchBook, User2 } from "lucide-react"
+import { DollarSign, LayoutDashboard, Presentation, ShieldUser, Users } from "lucide-react"
 
 export const serverNav = [
   {
-    title: "server",
+    title: "dashboard",
     href: "/server",
-    icon: PcCase
+    icon: LayoutDashboard
   },
   {
-    title: "information",
-    href: "/server/information",
-    icon: ChartColumnIncreasing
+    title: "clients",
+    href: "/server/clients",
+    icon: Users
   },
   {
-    title: "Users",
-    href: "/server/users",
-    icon: User2
+    title: "employees",
+    href: "/server/employees",
+    icon: ShieldUser
   },
   {
-    title: "factories",
-    href: "/server/factories",
-    icon: Factory
+    title: "projects",
+    href: "/server/projects",
+    icon: Presentation
   },
   {
-    title: "styles",
-    href: "/server/styles",
-    icon: SwatchBook
-  },
-  {
-    title: "colors",
-    href: "/server/colors",
-    icon: Palette
-  },
-  {
-    title: "Products",
-    href: "/server/products",
-    icon: Armchair
-  },
-  {
-    title: "orders",
-    href: "/server/orders",
-    icon: ClipboardList
-  },
-  {
-    title: "reviews",
-    href: "/server/reviews",
-    icon: Eye
+    title: "invoices",
+    href: "/server/invoices",
+    icon: DollarSign
   },
 ]

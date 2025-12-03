@@ -16,6 +16,7 @@ export const ProjectSchema = z.object({
   clientId: z.string().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  employeeId: z.string().nullish(),
 })
 
 export type Project = z.infer<typeof ProjectSchema>

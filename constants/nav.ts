@@ -13,7 +13,10 @@ export const frontNavLinks = [
     title: "contact us",
     href: "/contact"
   },
-
+  {
+    title: "server",
+    href: "/server"
+  },
 ]
 
 export const socials = [

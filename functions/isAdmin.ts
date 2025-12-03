@@ -1,5 +1,5 @@
 import { auth } from "@/auth"
-import RoleSchema from "@/generated/inputTypeSchemas/RoleSchema"
+import EmployeeRoleSchema from "@/generated/inputTypeSchemas/EmployeeRoleSchema"
 import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
 
@@ -9,8 +9,8 @@ export const isAdmin = async () => {
   if (!session) {
     redirect("/")
   } else {
-    const authRole = await prisma.user.findUnique({ where: { email: authEmail! }, select: { role: true } })
-    if (authRole?.role === RoleSchema.enum.admin || authEmail === process.env.SUPPER_ADMIN) {
+    const authRole = await prisma.employee.findUnique({ where: { email: authEmail! }, select: { role: true } })
+    if (authRole?.role === EmployeeRoleSchema.enum.admin || authEmail === process.env.SUPPER_ADMIN) {
       return { authRole, session }
     } else {
       redirect("/")

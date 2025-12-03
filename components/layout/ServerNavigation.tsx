@@ -16,9 +16,7 @@ export default function ServerNavigation() {
 					<SidebarMenuButton
 						asChild
 						className={`${
-							pathName === href
-								? "underline-offset-8 underline font-extrabold text-primary"
-								: "font-medium"
+							pathName === href ? "underline-offset-8 underline  font-extrabold " : "font-medium"
 						}  capitalize`}
 					>
 						<Link href={href}>

@@ -57,10 +57,9 @@ export const ModelName = {
   Authenticator: 'Authenticator',
   User: 'User',
   Client: 'Client',
+  Employee: 'Employee',
   Project: 'Project',
   Task: 'Task',
-  Comment: 'Comment',
-  TimeEntry: 'TimeEntry',
   Invoice: 'Invoice',
   InvoceItem: 'InvoceItem'
 } as const
@@ -141,14 +140,10 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  mobile: 'mobile',
-  country: 'country',
-  state: 'state',
-  city: 'city',
-  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  clientId: 'clientId'
+  clientId: 'clientId',
+  employeeId: 'employeeId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -156,11 +151,12 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 export const ClientScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  fullName: 'fullName',
+  email: 'email',
   companyName: 'companyName',
+  companyLogo: 'companyLogo',
   website: 'website',
   industry: 'industry',
-  email: 'email',
   phone: 'phone',
   country: 'country',
   state: 'state',
@@ -173,6 +169,22 @@ export const ClientScalarFieldEnum = {
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
 
 
+export const EmployeeScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  email: 'email',
+  role: 'role',
+  phone: 'phone',
+  country: 'country',
+  state: 'state',
+  city: 'city',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
+
+
 export const ProjectScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -183,7 +195,8 @@ export const ProjectScalarFieldEnum = {
   budget: 'budget',
   clientId: 'clientId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  employeeId: 'employeeId'
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -197,41 +210,12 @@ export const TaskScalarFieldEnum = {
   priority: 'priority',
   dueDate: 'dueDate',
   projectId: 'projectId',
-  userId: 'userId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
-
-
-export const CommentScalarFieldEnum = {
-  id: 'id',
-  content: 'content',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  taskId: 'taskId',
   userId: 'userId'
 } as const
 
-export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
-
-
-export const TimeEntryScalarFieldEnum = {
-  id: 'id',
-  description: 'description',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  duration: 'duration',
-  isBillable: 'isBillable',
-  projectId: 'projectId',
-  taskId: 'taskId',
-  userId: 'userId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TimeEntryScalarFieldEnum = (typeof TimeEntryScalarFieldEnum)[keyof typeof TimeEntryScalarFieldEnum]
+export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
 
 
 export const InvoiceScalarFieldEnum = {
@@ -241,11 +225,12 @@ export const InvoiceScalarFieldEnum = {
   issueDate: 'issueDate',
   dueDate: 'dueDate',
   subTotal: 'subTotal',
-  tax: 'tax',
+  taxRate: 'taxRate',
   total: 'total',
   clientId: 'clientId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  employeeId: 'employeeId'
 } as const
 
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]

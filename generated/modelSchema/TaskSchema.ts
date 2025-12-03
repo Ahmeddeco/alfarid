@@ -14,9 +14,9 @@ export const TaskSchema = z.object({
   description: z.string().nullish(),
   dueDate: z.date().nullish(),
   projectId: z.string().nullish(),
-  userId: z.string().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  userId: z.string().nullish(),
 })
 
 export type Task = z.infer<typeof TaskSchema>
