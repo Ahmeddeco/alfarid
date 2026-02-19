@@ -1,38 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with `create-next-app`.
+# 🚀 ALFARiD - High-Performance Digital Solutions Platform
 
-## Getting Started
+**ALFARiD (الفريد)** هو منصة رقمية متكاملة لوكالة تسويق وحلول برمجية، تم بناؤه باستخدام أحدث تقنيات الويب في 2026. يجمع المشروع بين التصميم العصري والأداء الفائق بفضل معمارية **Next.js 16** و **React 19**.
 
-First, run the development server:
+## 🌟 رؤية المشروع
+
+تم تصميم "الفريد" ليكون واجهة احترافية تعزز ثقة العملاء، مع التركيز على تحويل الزوار إلى شركاء نجاح من خلال تجربة مستخدم (UX) مدروسة بدقة وتكنولوجيا لا تقبل المساومة.
+
+## 🛠️ الـ Stack التقني (Tech Stack)
+
+تم بناء المشروع باستخدام "المعيار الذهبي" للتقنيات الحديثة:
+
+* **Framework:** [Next.js 16](https://nextjs.org/) (App Router) & [React 19](https://react.dev/).
+* **Language:** TypeScript (Strict Mode).
+* **Database & ORM:** PostgreSQL مع [Prisma ORM](https://www.prisma.io/) و [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) لأداء فائق السرعة.
+* **Authentication:** [Next-Auth v5 (Beta)](https://authjs.dev/) لتأمين الجلسات وربطها بقاعدة البيانات.
+* **Forms & Validation:** [Conform](https://conform.guide/) مع [Zod](https://zod.dev/) لضمان أمان البيانات وصحتها.
+* **Styling:** [Tailwind CSS 4.0](https://tailwindcss.com/) مع مكونات [Radix UI](https://www.radix-ui.com/) و [Shadcn UI].
+* **Visuals:** [Lucide React](https://lucide.dev/) للأيقونات و [Recharts](https://recharts.org/) لعرض البيانات الإحصائية.
+* **Media Handling:** [Uploadthing](https://uploadthing.com/) لإدارة ورفع الملفات والصور.
+
+## 🏗️ المعمارية الهندسية (Project Structure)
+
+يتبع المشروع معمارية **Modular & Scalable** لفصل المنطق عن العرض:
+
+* **`/app`**: يحتوي على الـ Routes والـ Layouts (Frontend & Server Components).
+* **`/actions`**: إدارة جميع الـ Server Actions (مثل `clientAction.ts`) لتقليل حجم الـ Bundle.
+* **`/logic`**: يضم Business Logic المعقد (مثل `isAdmin.ts`, `splittedImages.ts`).
+* **`/schemas`**: توحيد قواعد التحقق من البيانات باستخدام Zod (مثل `ClientSchema.ts`).
+* **`/components`**: مقسمة بدقة إلى (Auth, Forms, Layout, UI, Pages) لسهولة إعادة الاستخدام.
+* **`/prisma`**: إعدادات قاعدة البيانات ونظام الـ Seeding المتطور باستخدام **Faker.js**.
+
+## ✨ المميزات الرئيسية
+
+* **Ultrafast Performance:** بفضل الإصدارات الأحدث وتحسينات Prisma Accelerate.
+* **Enterprise Validation:** نظام نماذج (Forms) ذكي يمنع الأخطاء قبل حدوثها باستخدام Conform.
+* **Scalable Architecture:** كود نظيف ومنظم يسهل توسعته من موقع وكالة إلى منصة خدمات ضخمة.
+* **Advanced UI:** واجهة تدعم الـ Dark/Light mode بتناسق بصري عالٍ.
+* **Reliability:** نظام اختبارات (Tests) مجهز لضمان استقرار الوظائف الحيوية.
+
+## 🚀 البدء في التشغيل (Local Development)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# 1. تثبيت الاعتماديات
+pnpm install
+
+# 2. إعداد قاعدة البيانات
+npx prisma db push
+
+# 3. تشغيل نظام الـ Seed لتوليد بيانات تجريبية
+npx prisma db seed
+
+# 4. تشغيل بيئة التطوير
 pnpm dev
-# or
-bun dev
-```
-
-Open <http://localhost:3000> with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses `next/font` to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# alfarid
